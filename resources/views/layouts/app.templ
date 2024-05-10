@@ -1,0 +1,11 @@
+package layouts
+
+import "github.com/mrrizkin/gobest/resources/views/partials"
+import "github.com/mrrizkin/gobest/resources/views/utils/vite"
+
+templ AppLayout() {
+	@BaseLayout(vite.ViteScript("resources/assets/script/app.ts")) {
+		@partials.Header()
+		{ children... }
+	}
+}

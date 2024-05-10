@@ -1,0 +1,24 @@
+package vite
+
+var viteInstance = New(Config{
+	OutputDirectory: "public/build",
+	PublicPath:      "/build/",
+	ManifestFile:    "manifest.json",
+	HotFile:         "hot",
+})
+
+templ ViteScript(entries ...string) {
+	@templ.Raw(ViteEntries(viteInstance, "script", entries...))
+}
+
+templ ViteStyle(entries ...string) {
+	@templ.Raw(ViteEntries(viteInstance, "style", entries...))
+}
+
+templ VitePreload(entries ...string) {
+	@templ.Raw(ViteEntries(viteInstance, "preload", entries...))
+}
+
+templ ReactRefresh() {
+	@templ.Raw(ViteReactRefresh(viteInstance))
+}

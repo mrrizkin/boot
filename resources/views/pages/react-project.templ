@@ -1,0 +1,10 @@
+package pages
+
+import "github.com/mrrizkin/gobest/resources/views/layouts"
+import "github.com/mrrizkin/gobest/resources/views/utils/vite"
+
+templ React() {
+	@layouts.BaseLayout(vite.ReactRefresh(), vite.ViteScript("resources/assets/react/main.tsx")) {
+		<div id="app"></div>
+	}
+}

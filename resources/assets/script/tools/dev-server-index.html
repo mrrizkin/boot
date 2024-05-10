@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bajigur Vite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      *,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content: ""}html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.relative{position:relative}.mx-auto{margin-left:auto;margin-right:auto}.mt-6{margin-top:1.5rem}.flex{display:flex}.h-16{height:4rem}.h-6{height:1.5rem}.min-h-screen{min-height:100vh}.w-6{width:1.5rem}.w-auto{width:auto}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.space-x-6>:not([hidden])~:not([hidden]){--tw-space-x-reverse: 0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse: 0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-gray-300>:not([hidden])~:not([hidden]){--tw-divide-opacity: 1;border-color:rgb(209 213 219 / var(--tw-divide-opacity))}.overflow-hidden{overflow:hidden}.bg-gray-100{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity))}.bg-white{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-8{padding-bottom:2rem}.pt-10{padding-top:2.5rem}.text-base{font-size:1rem;line-height:1.5rem}.leading-7{line-height:1.75rem}.text-gray-500{--tw-text-opacity: 1;color:rgb(107 114 128 / var(--tw-text-opacity))}.text-gray-600{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-xl{--tw-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.ring-gray-900\/5{--tw-ring-color: rgb(17 24 39 / .05)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}@media (min-width: 640px){.sm\:mx-auto{margin-left:auto;margin-right:auto}.sm\:max-w-xl{max-width:36rem}.sm\:rounded-lg{border-radius:.5rem}.sm\:px-10{padding-left:2.5rem;padding-right:2.5rem}.sm\:py-12{padding-top:3rem;padding-bottom:3rem}}@media (prefers-color-scheme: dark){.dark\:divide-gray-700>:not([hidden])~:not([hidden]){--tw-divide-opacity: 1;border-color:rgb(55 65 81 / var(--tw-divide-opacity))}.dark\:bg-gray-800{--tw-bg-opacity: 1;background-color:rgb(31 41 55 / var(--tw-bg-opacity))}.dark\:bg-gray-900{--tw-bg-opacity: 1;background-color:rgb(17 24 39 / var(--tw-bg-opacity))}.dark\:text-gray-400{--tw-text-opacity: 1;color:rgb(156 163 175 / var(--tw-text-opacity))}}
+    </style>
+  </head>
+  <body class="antialiased">
+    <div
+      class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-100 text-gray-600 dark:text-gray-400 dark:bg-gray-900 py-6 sm:py-12">
+      <div
+        class="relative bg-white dark:bg-gray-800 px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-xl sm:rounded-lg sm:px-10">
+        <div class="mx-auto">
+          <div class="flex items-center justify-center space-x-6">
+            <a href="https://bajigur.com">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" class="h-16 w-auto">
+                <g clip-path="url(#clip0_17_2)">
+                  <path
+                    opacity="0.5"
+                    d="M215.84 51.9L197.46 204.46L173.44 219.9L118.54 224.96L61.3801 209.06L58.5601 205.42L37.5601 55.84L80.3001 66.7L151.48 72.76L207.14 57.24L215.84 51.9Z"
+                    fill="white" />
+                  <path
+                    opacity="0.7"
+                    d="M222.08 40.42C222.32 34.68 194.1 11.44 123.68 12.44C53.26 13.44 33.02 33 32.68 43.1C32.34 53.2 45.48 181.28 45.48 181.28L48.52 201.84C48.52 201.84 48.52 219.36 50.2 222.74C51.88 226.12 63.32 247.62 125.14 248.24C192.48 248.9 205.24 221.74 206.24 218.7C207.26 215.66 207.26 193.42 207.26 193.42L221.76 59.62C221.74 59.62 221.74 48.16 222.08 40.42Z"
+                    fill="#E0E0E0" />
+                  <path
+                    d="M208 76C208 76 197.7 169.96 197.06 174.9C196.1 182.32 194.1 185.92 192.2 187.62C190.3 189.32 167.7 210.6 127.64 211.54C87.58 212.48 64.26 191.34 61.18 187.24C59.48 184.96 58.72 177.74 58.14 174.7C57.58 171.66 45 79.5 45 79.5L208 76Z"
+                    fill="url(#paint0_radial_17_2)" />
+                  <path
+                    d="M178.76 180.06C181.76 187.42 170.66 194.14 157.52 198.52C136.94 205.38 109.18 204.88 93.3401 198.68C83.1401 194.68 76.0201 189.86 77.6601 182.68C79.3001 175.5 91.1001 182.2 99.3801 183.16C116.2 185.12 133.68 185.44 150.02 183.16C166.36 180.88 176.62 174.82 178.76 180.06Z"
+                    fill="#CF701E" />
+                  <path
+                    d="M205 74.7096L196 88.3394L166.009 98.2538L131.815 101L93.3523 100.414L68.884 95.4269L54.0314 86.0173L46 73.6192C46 73.6192 51.941 60.2922 87.2573 55.123C122.595 49.9336 160.42 55.8903 160.42 55.8903L193.096 63.9673L205 74.7096Z"
+                    fill="#DD821D" />
+                  <path
+                    d="M189 85.0637C189 85.0637 184.313 78.5391 174.739 74.7448C163.176 70.1475 144.957 69.1638 136.821 71.7937C128.706 74.4236 130.144 81.3096 133.394 84.2607C136.644 87.2118 140.248 90.0023 141.707 92.9534C143.166 95.9046 144.228 100 144.228 100L166.072 97.872L183.229 92.1303L189 85.0637ZM81.0155 72.8778C81.1261 75.9695 77.3895 76.8327 75.1564 77.3145C72.9233 77.7963 70.9113 78.9607 70.9113 80.3058C70.9113 81.6509 71.4198 83.4376 73.0339 84.5618C74.8469 85.8266 75.5986 87.8743 74.6258 89.1993C73.3434 90.9459 69.5184 92.1906 65.0522 89.2997C60.2102 86.1679 58.176 82.1327 59.3037 76.9331C60.6966 70.549 66.7547 68.4411 72.2821 68.0396C77.279 67.6983 80.905 69.5854 81.0155 72.8778Z"
+                    fill="#F8B951" />
+                  <path
+                    d="M196.682 77.0439C196.682 77.0439 192.266 65.2524 166.779 61.2289C139.468 56.9266 117.673 58.4005 107.324 58.52C96.0749 58.6395 77.7068 62.3045 77.0257 59.2371C76.3446 56.1697 89.2638 52.923 107.39 51.8474C125.539 50.7718 165.087 48.78 190.354 60.3127C215.621 71.8453 204.614 78 204.614 78L196.682 77.0439Z"
+                    fill="#F8B951" />
+                  <path
+                    d="M53.1732 70.0508C56.9477 70.4547 54.841 74.1103 55.7188 78.4727C57.7596 88.6112 84.3564 98.1237 122.496 97.4976C160.284 96.8715 190.107 88.6112 195.703 78.0082C198.073 73.5246 197.744 70.2124 203.164 70.374C208.584 70.5355 208.628 76.2309 207.224 79.0988C204.349 85.0163 199.324 95.1548 163.335 102.648C122.145 111.231 82.6667 105.758 63.5091 97.9621C45.4488 90.6106 45.3829 82.5119 45.0318 78.614C44.6807 74.7162 47.2263 69.4247 53.1732 70.0508Z"
+                    fill="#F8C977" />
+                  <path
+                    d="M192.62 78.82C192.62 78.82 191.66 107.56 188.7 118.42C186.52 126.44 182.62 131.32 176.94 131.58C172.62 131.78 166.52 127.66 165.68 117.76C164.76 106.64 164.66 83.76 164.66 83.76C164.66 83.76 170.74 83.5 178.96 82.36C186.52 81.32 192.62 78.82 192.62 78.82Z"
+                    fill="#F0E0C5" />
+                  <path
+                    d="M37.5601 55.84C37.5601 55.84 53.4001 172.7 53.9201 180.46C54.4601 188.36 55.3201 195.14 50.2601 195.3C45.7601 195.44 44.8001 179.16 43.9201 171.9C43.0201 164.62 27.8801 44.56 27.8801 44.56L32.2801 38.22L37.5601 55.84Z"
+                    fill="#9E9E9E" />
+                  <path
+                    d="M225.66 43.88C225.66 43.88 209.08 179.08 208.66 183.28C208.24 187.48 208.28 195.96 202.14 195.46C197.1 195.06 199.2 185.8 199.84 181.6C200.46 177.4 213.9 52.28 213.9 52.28L225.66 43.88ZM198.16 204.9C200.04 211.4 188.28 232.04 129.08 232.82C81.6399 233.44 56.5999 217.3 57.6999 205.52C58.7399 194.18 85.6199 220.76 127.4 219.38C178.42 217.72 194.42 192.04 198.16 204.9Z"
+                    fill="#D5D5D5" />
+                  <path
+                    d="M193.96 207.84C193.82 211.9 188.98 217.1 175.88 222.24C161.4 227.9 149.48 228.58 149.06 223.72C148.56 218.04 157.84 218.96 171.7 213.94C185.18 209.04 194.2 201.14 193.96 207.84Z"
+                    fill="#FEFEFE" />
+                  <path
+                    d="M125.76 8.43999C191.8 7.93999 224.28 24.42 225.92 40.1C227.48 54.94 202.18 78.04 126.3 77.76C53.1599 77.5 28.0199 58.1 27.7799 43.38C27.5199 27.28 54.7999 8.97999 125.76 8.43999ZM125.5 66.3C190.72 64.66 213.66 46.64 213.38 40.1C213.1 33.54 191.28 16.62 126.04 17.18C62.7199 17.72 39.7999 35.74 39.7999 40.38C39.7999 45.02 60.2599 67.94 125.5 66.3Z"
+                    fill="#C0C0C0" />
+                  <path
+                    d="M57.8441 2.74438C57.3589 2.07155 55.7828 2.77905 54.4097 3.4547C50.6005 5.08182 48.4648 5.99408 44.6557 7.62119C42.9584 8.32714 40.8113 8.7209 41.1052 9.8178C41.364 10.7837 73 85 74 85C80.0416 85 81.2069 86.1267 85.4866 84.7103C87.3123 84.106 91.4839 83.4173 91.4865 82.7103C91.5 79 58.3293 3.4172 57.8441 2.74438Z"
+                    fill="#884409" />
+                  <g filter="url(#filter0_f_17_2)">
+                    <rect
+                      width="5.57496"
+                      height="76.1175"
+                      transform="matrix(-0.90388 0.427785 0.427785 0.90388 56.438 6)"
+                      fill="#A05311" />
+                  </g>
+                  <g filter="url(#filter1_f_17_2)">
+                    <rect
+                      width="2.22456"
+                      height="74.7394"
+                      transform="matrix(-0.929579 0.368622 0.368622 0.929579 47.5183 11)"
+                      fill="#65370F" />
+                  </g>
+                  <path
+                    d="M225.92 40.1C224.28 24.42 191.8 7.93999 125.76 8.43999C99.4374 8.64031 79.1254 11.2844 64 15.3536L68 24.3372C81.5411 20.458 100.506 17.3978 126.04 17.18C191.28 16.62 213.1 33.54 213.38 40.1C213.66 46.64 190.72 64.66 125.5 66.3C60.2599 67.94 39.7999 45.02 39.7999 40.38C39.7999 39.3246 40.9858 37.5768 43.5633 35.5L35.8029 28.5C30.2185 33.2819 27.7001 38.4348 27.7799 43.38C28.0199 58.1 53.1599 77.5 126.3 77.76C202.18 78.04 227.48 54.94 225.92 40.1Z"
+                    fill="#C0C0C0" />
+                  <path
+                    d="M127.04 70.68C56.4801 71.38 37.7201 50.04 37.4801 42.78C37.2401 35.52 44.2801 34.58 44.2801 34.58C44.2801 34.58 43.3801 38.32 44.2801 40.68C46.8601 47.48 67.2601 62.72 127.5 63.18C186.84 63.64 209.3 47.88 210.5 41.14C211.2 37.16 208.62 35.28 209.56 33.88C210.5 32.48 215.42 35.52 216.82 41.14C218.68 48.6 209.8 69.86 127.04 70.68Z"
+                    fill="white" />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_f_17_2"
+                    x="47.3989"
+                    y="2"
+                    width="45.6011"
+                    height="79.186"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_17_2" />
+                  </filter>
+                  <filter
+                    id="filter1_f_17_2"
+                    x="41.4504"
+                    y="7"
+                    width="37.6184"
+                    height="78.2962"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_17_2" />
+                  </filter>
+                  <radialGradient
+                    id="paint0_radial_17_2"
+                    cx="0"
+                    cy="0"
+                    r="1"
+                    gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(125.31 137.843) rotate(89.5365) scale(58.7959 99.0476)">
+                    <stop offset="0.671" stop-color="#AC5810" />
+                    <stop offset="0.767" stop-color="#A8560F" />
+                    <stop offset="0.864" stop-color="#9C4F0D" />
+                    <stop offset="0.96" stop-color="#884409" />
+                  </radialGradient>
+                  <clipPath id="clip0_17_2">
+                    <rect width="256" height="256" fill="white" transform="matrix(-1 0 0 1 256 0)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <a href="https://vitejs.dev">
+              <svg viewBox="0 0 410 404" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto">
+                <path
+                  d="M399.641 59.5246L215.643 388.545C211.844 395.338 202.084 395.378 198.228 388.618L10.5817 59.5563C6.38087 52.1896 12.6802 43.2665 21.0281 44.7586L205.223 77.6824C206.398 77.8924 207.601 77.8904 208.776 77.6763L389.119 44.8058C397.439 43.2894 403.768 52.1434 399.641 59.5246Z"
+                  fill="url(#paint0_linear)" />
+                <path
+                  d="M292.965 1.5744L156.801 28.2552C154.563 28.6937 152.906 30.5903 152.771 32.8664L144.395 174.33C144.198 177.662 147.258 180.248 150.51 179.498L188.42 170.749C191.967 169.931 195.172 173.055 194.443 176.622L183.18 231.775C182.422 235.487 185.907 238.661 189.532 237.56L212.947 230.446C216.577 229.344 220.065 232.527 219.297 236.242L201.398 322.875C200.278 328.294 207.486 331.249 210.492 326.603L212.5 323.5L323.454 102.072C325.312 98.3645 322.108 94.137 318.036 94.9228L279.014 102.454C275.347 103.161 272.227 99.746 273.262 96.1583L298.731 7.86689C299.767 4.27314 296.636 0.855181 292.965 1.5744Z"
+                  fill="url(#paint1_linear)" />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear"
+                    x1="6.00017"
+                    y1="32.9999"
+                    x2="235"
+                    y2="344"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#41D1FF" />
+                    <stop offset="1" stop-color="#BD34FE" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint1_linear"
+                    x1="194.651"
+                    y1="8.81818"
+                    x2="236.076"
+                    y2="292.989"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FFEA83" />
+                    <stop offset="0.0833333" stop-color="#FFDD35" />
+                    <stop offset="1" stop-color="#FFA800" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </a>
+          </div>
+          <div class="divide-y divide-gray-300 dark:divide-gray-700">
+            <div class="py-8 text-base leading-7">
+              <p>
+                This is the Vite development server that provides Hot Module Replacement for your Bajigur application.
+              </p>
+              <p class="mt-6">To access your Bajigur application, you will need to run a local development server.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
