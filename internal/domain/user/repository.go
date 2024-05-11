@@ -3,8 +3,8 @@ package user
 import (
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/model"
-	"github.com/mrrizkin/gobest/internal/system/database"
+	"github.com/mrrizkin/boot/internal/model"
+	"github.com/mrrizkin/boot/internal/system/database"
 )
 
 type UserRepo struct {

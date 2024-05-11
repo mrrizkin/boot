@@ -1,12 +1,12 @@
 package views
 
 import (
-	"github.com/mrrizkin/gobest/resources/views/layouts"
-	"github.com/mrrizkin/gobest/resources/views/utils/vite"
+	"github.com/mrrizkin/boot/resources/views/layouts"
+	"github.com/mrrizkin/boot/resources/views/utils/vite"
 )
 
 templ Welcome(name string) {
-	@layouts.BaseLayout(vite.ViteScript("resources/assets/script/main.ts")) {
+	@layouts.BaseLayout(vite.Vite("resources/assets/ts/app.ts")) {
 		<h1>Hi! Greetings, { name }!</h1>
 	}
 }

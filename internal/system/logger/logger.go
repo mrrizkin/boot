@@ -11,7 +11,7 @@ import (
 	"go.uber.org/fx/fxevent"
 	"gopkg.in/natefinch/lumberjack.v2"
 
-	"github.com/mrrizkin/gobest/internal/system/config"
+	"github.com/mrrizkin/boot/internal/system/config"
 )
 
 type Logger struct {

@@ -3,7 +3,7 @@ package user
 import (
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/model"
+	"github.com/mrrizkin/boot/internal/model"
 )
 
 type UserService struct {

@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/mrrizkin/gobest/internal/utils"
+	"github.com/mrrizkin/boot/internal/utils"
 )
 
 type Config struct {
@@ -53,7 +53,7 @@ func New() (*Config, error) {
 	envLOG_LEVEL, _ := utils.EnvStr("LOG_LEVEL", "debug")
 	envLOG_CONSOLE, _ := utils.EnvBool("LOG_CONSOLE", true)
 	envLOG_FILE, _ := utils.EnvBool("LOG_FILE", true)
-	envLOG_DIR, _ := utils.EnvStr("LOG_DIR", "./log")
+	envLOG_DIR, _ := utils.EnvStr("LOG_DIR", "./storage/log")
 	envLOG_MAX_SIZE, _ := utils.EnvInt("LOG_MAX_SIZE", 50)
 	envLOG_MAX_AGE, _ := utils.EnvInt("LOG_MAX_AGE", 7)
 	envLOG_MAX_BACKUP, _ := utils.EnvInt("LOG_MAX_BACKUP", 20)

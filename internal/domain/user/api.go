@@ -4,10 +4,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/model"
-	"github.com/mrrizkin/gobest/internal/system/logger"
-	"github.com/mrrizkin/gobest/internal/types"
-	"github.com/mrrizkin/gobest/internal/utils"
+	"github.com/mrrizkin/boot/internal/model"
+	"github.com/mrrizkin/boot/internal/system/logger"
+	"github.com/mrrizkin/boot/internal/types"
+	"github.com/mrrizkin/boot/internal/utils"
 )
 
 type UserAPI struct {

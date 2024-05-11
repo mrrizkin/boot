@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
-import gobest from "./resources/assets/script/tools/vite-plugin-backend";
-import react from "@vitejs/plugin-react";
+import backendPlugin from "vite-plugin-backend";
+import fullReload from "vite-plugin-full-reload";
 
 export default defineConfig({
-  plugins: [react(), ...gobest({
-    input: ["resources/assets/script/main.ts"],
-    refresh: false,
-  })],
+  plugins: [
+    backendPlugin({
+      input: ["resources/assets/ts/app.ts"],
+    }),
+    fullReload(["resources/views/**"]),
+  ],
 });

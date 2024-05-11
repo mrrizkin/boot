@@ -4,9 +4,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/system/logger"
-	"github.com/mrrizkin/gobest/internal/utils"
-	"github.com/mrrizkin/gobest/resources/views"
+	"github.com/mrrizkin/boot/internal/system/logger"
+	"github.com/mrrizkin/boot/internal/utils"
+	"github.com/mrrizkin/boot/resources/views"
 )
 
 type WelcomeAPI struct {

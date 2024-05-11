@@ -1,24 +1,35 @@
 package vite
 
-var viteInstance = New(Config{
-	OutputDirectory: "public/build",
-	PublicPath:      "/build/",
-	ManifestFile:    "manifest.json",
-	HotFile:         "hot",
+import "github.com/mrrizkin/go-vite-parser"
+
+var viteInstance = goviteparser.Parse(goviteparser.Config{
+	OutDir:       "public/build/",
+	ManifestPath: "public/build/manifest.json",
+	HotFilePath:  "public/hot",
 })
 
-templ ViteScript(entries ...string) {
-	@templ.Raw(ViteEntries(viteInstance, "script", entries...))
+func render(entries ...string) string {
+	tags := ""
+	for _, entry := range entries {
+		tag, ok := viteInstance.ManifestTags[entry]
+		if ok {
+			tags = tags + tag.Render()
+		} else if viteInstance.Origin != "" {
+			tag, _ := viteInstance.EntryDevTag(entry)
+			tags = tags + tag
+		}
+	}
+	return tags
 }
 
-templ ViteStyle(entries ...string) {
-	@templ.Raw(ViteEntries(viteInstance, "style", entries...))
+templ ViteClient() {
+	@templ.Raw(viteInstance.ClientTag)
 }
 
-templ VitePreload(entries ...string) {
-	@templ.Raw(ViteEntries(viteInstance, "preload", entries...))
+templ Vite(entries ...string) {
+	@templ.Raw(render(entries...))
 }
 
 templ ReactRefresh() {
-	@templ.Raw(ViteReactRefresh(viteInstance))
+	@templ.Raw(viteInstance.ReactRefresh)
 }

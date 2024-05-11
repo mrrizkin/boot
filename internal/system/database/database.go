@@ -11,9 +11,9 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
-	"github.com/mrrizkin/gobest/internal/model"
-	"github.com/mrrizkin/gobest/internal/system/config"
-	"github.com/mrrizkin/gobest/internal/system/logger"
+	"github.com/mrrizkin/boot/internal/model"
+	"github.com/mrrizkin/boot/internal/system/config"
+	"github.com/mrrizkin/boot/internal/system/logger"
 )
 
 type Database struct {

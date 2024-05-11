@@ -13,8 +13,8 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/system/config"
-	"github.com/mrrizkin/gobest/internal/system/logger"
+	"github.com/mrrizkin/boot/internal/system/config"
+	"github.com/mrrizkin/boot/internal/system/logger"
 )
 
 type Server struct {

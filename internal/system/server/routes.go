@@ -3,12 +3,8 @@ package server
 import (
 	"go.uber.org/fx"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/mrrizkin/gobest/internal/domain/user"
-	"github.com/mrrizkin/gobest/internal/domain/welcome"
-	"github.com/mrrizkin/gobest/internal/utils"
-	"github.com/mrrizkin/gobest/resources/views/pages"
-	"github.com/mrrizkin/gobest/resources/views/pages/dashboard"
+	"github.com/mrrizkin/boot/internal/domain/user"
+	"github.com/mrrizkin/boot/internal/domain/welcome"
 )
 
 type Routes struct {
@@ -36,14 +32,6 @@ func NewRoutes(p RoutesParams) *Routes {
 
 func (r *Routes) setup() {
 	r.Get("/", r.WelcomeAPI.Welcome)
-
-	r.Get("/admin", func(c *fiber.Ctx) error {
-		return utils.Render(c, dashboard.Index())
-	})
-
-	r.Get("/react", func(c *fiber.Ctx) error {
-		return utils.Render(c, pages.React())
-	})
 
 	api := r.Group("/api")
 	v1 := api.Group("/v1")

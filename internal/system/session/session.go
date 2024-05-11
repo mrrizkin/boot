@@ -12,7 +12,7 @@ import (
 	"github.com/gofiber/storage/sqlite3/v2"
 	"go.uber.org/fx"
 
-	"github.com/mrrizkin/gobest/internal/system/config"
+	"github.com/mrrizkin/boot/internal/system/config"
 )
 
 type Session struct {
