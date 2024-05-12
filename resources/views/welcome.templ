@@ -7,6 +7,7 @@ import (
 
 templ Welcome(name string) {
 	@layouts.BaseLayout(vite.Vite("resources/assets/ts/app.ts")) {
-		<h1>Hi! Greetings, { name }!</h1>
+		<h1 class="">Hi! there, { name }!</h1>
+		<p>Something is not right</p>
 	}
 }

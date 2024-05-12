@@ -5,16 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "vite-plugin-backend": "^1.0.0",
     "vite-plugin-full-reload": "^1.1.0"

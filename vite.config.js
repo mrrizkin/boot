@@ -7,6 +7,6 @@ export default defineConfig({
     backendPlugin({
       input: ["resources/assets/ts/app.ts"],
     }),
-    fullReload(["resources/views/**"]),
+    fullReload(["tmp/main"]),
   ],
 });
