@@ -19,14 +19,14 @@ type Session struct {
 	*session.Store
 }
 
-type SessionParams struct {
+type SessionDeps struct {
 	fx.In
 
 	Lc     fx.Lifecycle
 	Config *config.Config
 }
 
-func New(p SessionParams) *Session {
+func New(p SessionDeps) *Session {
 	var (
 		storage fiber.Storage
 		store   *session.Store

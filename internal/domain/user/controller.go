@@ -10,26 +10,26 @@ import (
 	"github.com/mrrizkin/boot/internal/utils"
 )
 
-type UserAPI struct {
+type UserController struct {
 	service *UserService
 	log     *logger.Logger
 }
 
-type UserAPIParams struct {
+type UserControllerDeps struct {
 	fx.In
 
 	Service *UserService
 	Logger  *logger.Logger
 }
 
-func NewUserAPI(p UserAPIParams) (*UserAPI, error) {
-	return &UserAPI{
+func NewUserController(p UserControllerDeps) (*UserController, error) {
+	return &UserController{
 		service: p.Service,
 		log:     p.Logger,
 	}, nil
 }
 
-func (a *UserAPI) Create(c *fiber.Ctx) error {
+func (a *UserController) Create(c *fiber.Ctx) error {
 	var (
 		err     error
 		payload model.User
@@ -60,7 +60,7 @@ func (a *UserAPI) Create(c *fiber.Ctx) error {
 	})
 }
 
-func (a *UserAPI) FindAll(c *fiber.Ctx) error {
+func (a *UserController) FindAll(c *fiber.Ctx) error {
 	var (
 		err   error
 		users []model.User
@@ -82,7 +82,7 @@ func (a *UserAPI) FindAll(c *fiber.Ctx) error {
 	})
 }
 
-func (a *UserAPI) FindByID(c *fiber.Ctx) error {
+func (a *UserController) FindByID(c *fiber.Ctx) error {
 	var (
 		err error
 		id  int
@@ -113,7 +113,7 @@ func (a *UserAPI) FindByID(c *fiber.Ctx) error {
 	})
 }
 
-func (a *UserAPI) Update(c *fiber.Ctx) error {
+func (a *UserController) Update(c *fiber.Ctx) error {
 	var (
 		err     error
 		id      int
@@ -154,7 +154,7 @@ func (a *UserAPI) Update(c *fiber.Ctx) error {
 	})
 }
 
-func (a *UserAPI) Delete(c *fiber.Ctx) error {
+func (a *UserController) Delete(c *fiber.Ctx) error {
 	var (
 		err error
 		id  int

@@ -22,13 +22,13 @@ type FxLogger struct {
 	Logger *Logger
 }
 
-type LoggerParams struct {
+type LoggerDeps struct {
 	fx.In
 
 	Config *config.Config
 }
 
-func New(p LoggerParams) (*Logger, error) {
+func New(p LoggerDeps) (*Logger, error) {
 	var writers []io.Writer
 
 	if p.Config.LOG_CONSOLE {

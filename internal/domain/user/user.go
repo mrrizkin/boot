@@ -10,13 +10,13 @@ type UserService struct {
 	repo *UserRepo
 }
 
-type UserServiceParams struct {
+type UserServiceDeps struct {
 	fx.In
 
 	Repo *UserRepo
 }
 
-func NewUserService(p UserServiceParams) (*UserService, error) {
+func NewUserService(p UserServiceDeps) (*UserService, error) {
 	return &UserService{
 		repo: p.Repo,
 	}, nil

@@ -9,22 +9,22 @@ import (
 	"github.com/mrrizkin/boot/resources/views"
 )
 
-type WelcomeAPI struct {
+type WelcomeController struct {
 	log *logger.Logger
 }
 
-type WelcomeAPIParams struct {
+type WelcomeControllerDeps struct {
 	fx.In
 
 	Logger *logger.Logger
 }
 
-func NewWelcomeAPI(p WelcomeAPIParams) (*WelcomeAPI, error) {
-	return &WelcomeAPI{
+func NewWelcomeController(p WelcomeControllerDeps) (*WelcomeController, error) {
+	return &WelcomeController{
 		log: p.Logger,
 	}, nil
 }
 
-func (a *WelcomeAPI) Welcome(c *fiber.Ctx) error {
+func (a *WelcomeController) Welcome(c *fiber.Ctx) error {
 	return utils.Render(c, views.Welcome("Rizki"))
 }

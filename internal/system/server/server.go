@@ -21,14 +21,14 @@ type Server struct {
 	*fiber.App
 }
 
-type ServerParams struct {
+type ServerDeps struct {
 	fx.In
 
 	Config *config.Config
 	Logger *logger.Logger
 }
 
-func New(p ServerParams) *Server {
+func New(p ServerDeps) *Server {
 	app := fiber.New(fiber.Config{
 		Prefork:               p.Config.PREFORK,
 		DisableStartupMessage: true,
@@ -50,7 +50,7 @@ func New(p ServerParams) *Server {
 	}
 }
 
-type ServeParams struct {
+type ServeDeps struct {
 	fx.In
 
 	Lc     fx.Lifecycle
@@ -59,7 +59,7 @@ type ServeParams struct {
 	Routes *Routes
 }
 
-func Serve(p ServeParams) {
+func Serve(p ServeDeps) {
 	p.Routes.setup()
 
 	p.Lc.Append(fx.Hook{

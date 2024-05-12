@@ -25,10 +25,10 @@ func Run() {
 			session.New,
 
 			user.NewUserRepo,
-			user.NewUserAPI,
+			user.NewUserController,
 			user.NewUserService,
 
-			welcome.NewWelcomeAPI,
+			welcome.NewWelcomeController,
 
 			server.New,
 			server.NewRoutes,

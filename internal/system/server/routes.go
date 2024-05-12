@@ -10,36 +10,36 @@ import (
 type Routes struct {
 	*Server
 
-	UserAPI    *user.UserAPI
-	WelcomeAPI *welcome.WelcomeAPI
+	UserController    *user.UserController
+	WelcomeController *welcome.WelcomeController
 }
 
-type RoutesParams struct {
+type RoutesDeps struct {
 	fx.In
 
-	Server     *Server
-	UserAPI    *user.UserAPI
-	WelcomeAPI *welcome.WelcomeAPI
+	Server            *Server
+	UserController    *user.UserController
+	WelcomeController *welcome.WelcomeController
 }
 
-func NewRoutes(p RoutesParams) *Routes {
+func NewRoutes(p RoutesDeps) *Routes {
 	return &Routes{
-		Server:     p.Server,
-		UserAPI:    p.UserAPI,
-		WelcomeAPI: p.WelcomeAPI,
+		Server:            p.Server,
+		UserController:    p.UserController,
+		WelcomeController: p.WelcomeController,
 	}
 }
 
-func (r *Routes) setup() {
-	r.Get("/", r.WelcomeAPI.Welcome)
+func (route *Routes) setup() {
+	route.Get("/", route.WelcomeController.Welcome)
 
-	api := r.Group("/api")
+	api := route.Group("/api")
 	v1 := api.Group("/v1")
 
 	user := v1.Group("/user")
-	user.Get("/", r.UserAPI.FindAll)
-	user.Get("/:id", r.UserAPI.FindByID)
-	user.Post("/", r.UserAPI.Create)
-	user.Put("/:id", r.UserAPI.Update)
-	user.Delete("/:id", r.UserAPI.Delete)
+	user.Get("/", route.UserController.FindAll)
+	user.Get("/:id", route.UserController.FindByID)
+	user.Post("/", route.UserController.Create)
+	user.Put("/:id", route.UserController.Update)
+	user.Delete("/:id", route.UserController.Delete)
 }

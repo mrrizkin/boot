@@ -11,13 +11,13 @@ type UserRepo struct {
 	db *database.Database
 }
 
-type UserRepoParams struct {
+type UserRepoDeps struct {
 	fx.In
 
 	Database *database.Database
 }
 
-func NewUserRepo(p UserRepoParams) (*UserRepo, error) {
+func NewUserRepo(p UserRepoDeps) (*UserRepo, error) {
 	return &UserRepo{
 		db: p.Database,
 	}, nil

@@ -20,7 +20,7 @@ type Database struct {
 	*gorm.DB
 }
 
-type DatabaseParams struct {
+type DatabaseDeps struct {
 	fx.In
 
 	Lc     fx.Lifecycle
@@ -29,7 +29,7 @@ type DatabaseParams struct {
 	Logger *logger.Logger
 }
 
-func New(p DatabaseParams) (*Database, error) {
+func New(p DatabaseDeps) (*Database, error) {
 	var (
 		db  *gorm.DB
 		err error
