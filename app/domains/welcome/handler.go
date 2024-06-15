@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/fx"
 
-	utils "github.com/mrrizkin/boot/app/helpers"
+	"github.com/mrrizkin/boot/app/helpers"
 	"github.com/mrrizkin/boot/resources/views"
 	"github.com/mrrizkin/boot/system/logger"
 )
@@ -26,5 +26,5 @@ func NewWelcomeHandler(p WelcomeHandlerDeps) (*WelcomeHandler, error) {
 }
 
 func (a *WelcomeHandler) Welcome(c *fiber.Ctx) error {
-	return utils.Render(c, views.Welcome("Rizki"))
+	return helpers.Render(c, views.Welcome("Rizki"))
 }

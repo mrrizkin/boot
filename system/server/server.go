@@ -64,11 +64,11 @@ func Serve(p ServeDeps) {
 
 	p.Lc.Append(fx.Hook{
 		OnStart: func(context.Context) error {
-			go p.Server.App.Listen(fmt.Sprintf(":%d", p.Config.PORT))
+			go p.Server.Listen(fmt.Sprintf(":%d", p.Config.PORT))
 			return nil
 		},
 		OnStop: func(context.Context) error {
-			return p.Server.App.Shutdown()
+			return p.Server.Shutdown()
 		},
 	})
 }
