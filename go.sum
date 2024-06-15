@@ -56,6 +56,10 @@ github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o
 github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
 github.com/mrrizkin/go-vite-parser v1.1.0 h1:EY28h9UYb8oDyJj8txAv1CjEFTVDIgc/Prykk/JYVwk=
 github.com/mrrizkin/go-vite-parser v1.1.0/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
+github.com/mrrizkin/go-vite-parser v1.2.0 h1:XxHk2tt7l5eGNz29dWD6LKaU4v0gz2QSVdVdeRNtM/M=
+github.com/mrrizkin/go-vite-parser v1.2.0/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
+github.com/mrrizkin/go-vite-parser v1.2.1 h1:aD+wQv5L8X6mKcxMFUwtGMsrJYe2TcWrnK9IHhTLsWY=
+github.com/mrrizkin/go-vite-parser v1.2.1/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
 github.com/philhofer/fwd v1.1.2 h1:bnDivRJ1EWPjUIRXV5KfORO897HTbpFAQddBdE8t7Gw=
 github.com/philhofer/fwd v1.1.2/go.mod h1:qkPdfjR2SIEbspLqpe1tO4n5yICnr2DY7mqEx2tUTP0=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

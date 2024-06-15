@@ -1,6 +1,6 @@
 package layouts
 
-import "github.com/mrrizkin/boot/resources/views/utils/vite"
+import "github.com/mrrizkin/boot/system/helpers/vite"
 
 templ BaseLayout(head ...templ.Component) {
 	<!DOCTYPE html>
@@ -8,7 +8,7 @@ templ BaseLayout(head ...templ.Component) {
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>Go boot</title>
+			<title>Boot</title>
 			@vite.ViteClient()
 			for _, h := range head {
 				@h

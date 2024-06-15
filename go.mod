@@ -11,7 +11,7 @@ require (
 	github.com/gofiber/storage/postgres/v3 v3.0.0
 	github.com/gofiber/storage/sqlite3/v2 v2.1.1
 	github.com/joho/godotenv v1.5.1
-	github.com/mrrizkin/go-vite-parser v1.1.0
+	github.com/mrrizkin/go-vite-parser v1.2.1
 	github.com/rs/zerolog v1.32.0
 	go.uber.org/fx v1.21.1
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
