@@ -5,7 +5,7 @@ go 1.22.2
 require (
 	github.com/a-h/templ v0.2.680
 	github.com/gofiber/contrib/fiberzerolog v1.0.1
-	github.com/gofiber/fiber/v2 v2.52.4
+	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/gofiber/storage/memory/v2 v2.0.1
 	github.com/gofiber/storage/mysql/v2 v2.0.0
 	github.com/gofiber/storage/postgres/v3 v3.0.0

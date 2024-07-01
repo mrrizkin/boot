@@ -14,8 +14,8 @@ github.com/go-sql-driver/mysql v1.8.1/go.mod h1:wEBSXgmK//2ZFJyE+qWnIsVGmvmEKlqw
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/gofiber/contrib/fiberzerolog v1.0.1 h1:kKIlD1v72Iy9/PW3z5nyZ1XeAAO1ZNIl8oKGen0BiV4=
 github.com/gofiber/contrib/fiberzerolog v1.0.1/go.mod h1:bDsXnPPGUVTETnl9KfzoTgLABYFxDdIjSabLqU763Do=
-github.com/gofiber/fiber/v2 v2.52.4 h1:P+T+4iK7VaqUsq2PALYEfBBo6bJZ4q3FP8cZ84EggTM=
-github.com/gofiber/fiber/v2 v2.52.4/go.mod h1:KEOE+cXMhXG0zHc9d8+E38hoX+ZN7bhOtgeF2oT6jrQ=
+github.com/gofiber/fiber/v2 v2.52.5 h1:tWoP1MJQjGEe4GB5TUGOi7P2E0ZMMRx5ZTG4rT+yGMo=
+github.com/gofiber/fiber/v2 v2.52.5/go.mod h1:KEOE+cXMhXG0zHc9d8+E38hoX+ZN7bhOtgeF2oT6jrQ=
 github.com/gofiber/storage/memory/v2 v2.0.1 h1:tAETnom9uvEB9B3I2LkgewiuqYDAH0ItrIsmT8MUEwk=
 github.com/gofiber/storage/memory/v2 v2.0.1/go.mod h1:RRo3RfX6nTD/UhERyE/u5LcSfqtMo9dA4ltmieSe+QM=
 github.com/gofiber/storage/mysql/v2 v2.0.0 h1:Ul3ckOKtI3zB+Jccow3qWvcTCuvJ84LkvKRrRq9HQtw=
@@ -54,10 +54,6 @@ github.com/mattn/go-runewidth v0.0.15 h1:UNAjwbU9l54TA3KzvqLGxwWjHmMgBUVhBiTjelZ
 github.com/mattn/go-runewidth v0.0.15/go.mod h1:Jdepj2loyihRzMpdS35Xk/zdY8IAYHsh153qUoGf23w=
 github.com/mattn/go-sqlite3 v1.14.22 h1:2gZY6PC6kBnID23Tichd1K+Z0oS6nE/XwU+Vz/5o4kU=
 github.com/mattn/go-sqlite3 v1.14.22/go.mod h1:Uh1q+B4BYcTPb+yiD3kU8Ct7aC0hY9fxUwlHK0RXw+Y=
-github.com/mrrizkin/go-vite-parser v1.1.0 h1:EY28h9UYb8oDyJj8txAv1CjEFTVDIgc/Prykk/JYVwk=
-github.com/mrrizkin/go-vite-parser v1.1.0/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
-github.com/mrrizkin/go-vite-parser v1.2.0 h1:XxHk2tt7l5eGNz29dWD6LKaU4v0gz2QSVdVdeRNtM/M=
-github.com/mrrizkin/go-vite-parser v1.2.0/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
 github.com/mrrizkin/go-vite-parser v1.2.1 h1:aD+wQv5L8X6mKcxMFUwtGMsrJYe2TcWrnK9IHhTLsWY=
 github.com/mrrizkin/go-vite-parser v1.2.1/go.mod h1:ipAi4qnJbI2Y2vh+cVhRCg7yVNX8dIhB2YkQIdqkvL0=
 github.com/philhofer/fwd v1.1.2 h1:bnDivRJ1EWPjUIRXV5KfORO897HTbpFAQddBdE8t7Gw=
