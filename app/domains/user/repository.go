@@ -1,48 +1,50 @@
 package user
 
 import (
-	"go.uber.org/fx"
-
 	"github.com/mrrizkin/boot/app/models"
 	"github.com/mrrizkin/boot/system/database"
+	"github.com/mrrizkin/boot/system/stypes"
 )
 
-type UserRepo struct {
-	db *database.Database
+func NewRepo(db *database.Database) *Repo {
+	return &Repo{db}
 }
 
-type UserRepoDeps struct {
-	fx.In
-
-	Database *database.Database
-}
-
-func NewUserRepo(p UserRepoDeps) (*UserRepo, error) {
-	return &UserRepo{
-		db: p.Database,
-	}, nil
-}
-
-func (r *UserRepo) Create(user *models.User) error {
+func (r *Repo) Create(user *models.User) error {
 	return r.db.Create(user).Error
 }
 
-func (r *UserRepo) FindAll() ([]models.User, error) {
-	var users []models.User
-	err := r.db.Find(&users).Error
+func (r *Repo) FindAll(
+	pagination stypes.Pagination,
+) ([]models.User, error) {
+	users := make([]models.User, 0)
+	err := r.db.
+		Preload("Role").
+		Offset((pagination.Page - 1) * pagination.PerPage).
+		Limit(pagination.PerPage).
+		Find(&users).Error
 	return users, err
 }
 
-func (r *UserRepo) FindByID(id uint) (*models.User, error) {
-	var user models.User
-	err := r.db.First(&user, id).Error
-	return &user, err
+func (r *Repo) FindAllCount() (int64, error) {
+	var count int64 = 0
+	err := r.db.Model(&models.User{}).Count(&count).Error
+	return count, err
 }
 
-func (r *UserRepo) Update(user *models.User) error {
+func (r *Repo) FindByID(id uint) (*models.User, error) {
+	user := new(models.User)
+	err := r.db.
+		Preload("Role").
+		First(user, id).
+		Error
+	return user, err
+}
+
+func (r *Repo) Update(user *models.User) error {
 	return r.db.Save(user).Error
 }
 
-func (r *UserRepo) Delete(id uint) error {
+func (r *Repo) Delete(id uint) error {
 	return r.db.Delete(&models.User{}, id).Error
 }

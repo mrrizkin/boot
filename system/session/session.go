@@ -1,7 +1,6 @@
 package session
 
 import (
-	"context"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -10,64 +9,53 @@ import (
 	"github.com/gofiber/storage/mysql/v2"
 	"github.com/gofiber/storage/postgres/v3"
 	"github.com/gofiber/storage/sqlite3/v2"
-	"go.uber.org/fx"
 
 	"github.com/mrrizkin/boot/system/config"
 )
 
 type Session struct {
 	*session.Store
+
+	storage fiber.Storage
 }
 
-type SessionDeps struct {
-	fx.In
-
-	Lc     fx.Lifecycle
-	Config *config.Config
-}
-
-func New(p SessionDeps) *Session {
+func New(config *config.Config) (*Session, error) {
 	var (
 		storage fiber.Storage
-		store   *session.Store
 		err     error
 	)
 
-	p.Lc.Append(fx.Hook{
-		OnStart: func(context.Context) error {
-			switch p.Config.SESSION_DRIVER {
-			case "database":
-				storage, err = createDatabaseStorage(p.Config)
-			case "file":
-				storage, err = createFileStorage()
-			case "redis": // coming soon
-				storage, err = createMemoryStorage()
-			case "valkey": // coming soon
-				storage, err = createMemoryStorage()
-			case "memory":
-				storage, err = createMemoryStorage()
-			default:
-				storage, err = createMemoryStorage()
-			}
+	switch config.SESSION_DRIVER {
+	case "database":
+		storage, err = createDatabaseStorage(config)
+	case "file":
+		storage, err = createFileStorage()
+	case "redis": // coming soon
+		storage, err = createMemoryStorage()
+	case "valkey": // coming soon
+		storage, err = createMemoryStorage()
+	case "memory":
+		storage, err = createMemoryStorage()
+	default:
+		storage, err = createMemoryStorage()
+	}
 
-			if err != nil {
-				return err
-			}
-
-			store = session.New(session.Config{
-				Storage: storage,
-			})
-
-			return nil
-		},
-		OnStop: func(context.Context) error {
-			return storage.Close()
-		},
-	})
+	if err != nil {
+		return nil, err
+	}
 
 	return &Session{
-		Store: store,
-	}
+		Store: session.New(session.Config{
+			Storage:    storage,
+			Expiration: 24 * time.Hour,
+			KeyLookup:  "cookie:finteligo_session_key",
+		}),
+		storage: storage,
+	}, nil
+}
+
+func (s *Session) Stop() error {
+	return s.storage.Close()
 }
 
 func createDatabaseStorage(c *config.Config) (fiber.Storage, error) {

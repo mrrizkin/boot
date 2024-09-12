@@ -1,97 +1,49 @@
 package config
 
 import (
-	"fmt"
-	"regexp"
-
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/mrrizkin/boot/app/helpers"
 )
 
 type Config struct {
-	APP_NAME string
-	ENV      string
-	PORT     int
-	PREFORK  bool
+	APP_NAME string `env:"APP_NAME,required"`
+	APP_KEY  string `env:"APP_KEY,required"`
+	ENV      string `env:"ENV,required"`
+	PORT     int    `env:"PORT,required"`
+	PREFORK  bool   `env:"PREFORK,default=false"`
 
-	LOG_LEVEL      string
-	LOG_CONSOLE    bool
-	LOG_FILE       bool
-	LOG_DIR        string
-	LOG_MAX_SIZE   int
-	LOG_MAX_AGE    int
-	LOG_MAX_BACKUP int
-	LOG_JSON       bool
+	LOG_LEVEL      string `env:"LOG_LEVEL,default=debug"`
+	LOG_CONSOLE    bool   `env:"LOG_CONSOLE,default=true"`
+	LOG_FILE       bool   `env:"LOG_FILE,default=true"`
+	LOG_DIR        string `env:"LOG_DIR,default=./storage/log"`
+	LOG_MAX_SIZE   int    `env:"LOG_MAX_SIZE,default=50"`
+	LOG_MAX_AGE    int    `env:"LOG_MAX_AGE,default=7"`
+	LOG_MAX_BACKUP int    `env:"LOG_MAX_BACKUP,default=20"`
+	LOG_JSON       bool   `env:"LOG_JSON,default=true"`
 
-	DB_DRIVER   string
-	DB_HOST     string
-	DB_PORT     int
-	DB_NAME     string
-	DB_USERNAME string
-	DB_PASSWORD string
-	DB_SSLMODE  string
+	HASH_MEMORY      int `env:"HASH_MEMORY,default=64"`
+	HASH_ITERATIONS  int `env:"HASH_ITERATIONS,default=10"`
+	HASH_PARALLELISM int `env:"HASH_PARALLELISM,default=2"`
+	HASH_SALT_LEN    int `env:"HASH_SALT_LEN,default=32"`
+	HASH_KEY_LEN     int `env:"HASH_KEY_LEN,default=32"`
 
-	SESSION_DRIVER string
+	SUPER_ADMIN_NAME     string `env:"SUPER_ADMIN_NAME,required"`
+	SUPER_ADMIN_EMAIL    string `env:"SUPER_ADMIN_EMAIL,required"`
+	SUPER_ADMIN_USERNAME string `env:"SUPER_ADMIN_USERNAME,required"`
+	SUPER_ADMIN_PASSWORD string `env:"SUPER_ADMIN_PASSWORD,required"`
+
+	DB_DRIVER   string `env:"DB_DRIVER,default=sqlite"`
+	DB_HOST     string `env:"DB_HOST,default=./storage/db.sqlite"`
+	DB_PORT     int    `env:"DB_PORT,default=5432"`
+	DB_NAME     string `env:"DB_NAME,default=boot"`
+	DB_USERNAME string `env:"DB_USERNAME,default=boot"`
+	DB_PASSWORD string `env:"DB_PASSWORD,default=boot"`
+	DB_SSLMODE  string `env:"DB_SSLMODE,default=disable"`
+
+	SESSION_DRIVER string `env:"SESSION_DRIVER,default=file"`
 }
 
-var (
-	// validAPP_NAME should only include alpabetical and underscore
-	validAPP_NAME = regexp.MustCompile(`^[a-zA-Z_0-9]+$`)
-)
-
 func New() (*Config, error) {
-	envAPP_NAME, _ := helpers.EnvStr("APP_NAME", "gofast")
-
-	if !validAPP_NAME.MatchString(*envAPP_NAME) {
-		return nil, fmt.Errorf("APP_NAME is not valid")
-	}
-
-	envENV, _ := helpers.EnvStr("ENV", "development")
-	envPORT, _ := helpers.EnvInt("PORT", 3000)
-	envPREFORK, _ := helpers.EnvBool("PREFORK", false)
-
-	envLOG_LEVEL, _ := helpers.EnvStr("LOG_LEVEL", "debug")
-	envLOG_CONSOLE, _ := helpers.EnvBool("LOG_CONSOLE", true)
-	envLOG_FILE, _ := helpers.EnvBool("LOG_FILE", true)
-	envLOG_DIR, _ := helpers.EnvStr("LOG_DIR", "./storage/log")
-	envLOG_MAX_SIZE, _ := helpers.EnvInt("LOG_MAX_SIZE", 50)
-	envLOG_MAX_AGE, _ := helpers.EnvInt("LOG_MAX_AGE", 7)
-	envLOG_MAX_BACKUP, _ := helpers.EnvInt("LOG_MAX_BACKUP", 20)
-	envLOG_JSON, _ := helpers.EnvBool("LOG_JSON", true)
-
-	envDBDriver, _ := helpers.EnvStr("DB_DRIVER", "sqlite")
-	envDBHost, _ := helpers.EnvStr("DB_HOST", "localhost")
-	envDBPort, _ := helpers.EnvInt("DB_PORT", 5432)
-	envDBName, _ := helpers.EnvStr("DB_NAME", "gofast")
-	envDBUsername, _ := helpers.EnvStr("DB_USERNAME", "gofast")
-	envDBPassword, _ := helpers.EnvStr("DB_PASSWORD", "gofast")
-	envDBSSLMode, _ := helpers.EnvStr("DB_SSLMODE", "disable")
-
-	envSESSION_DRIVER, _ := helpers.EnvStr("SESSION_DRIVER", "sqlite")
-
-	return &Config{
-		APP_NAME: *envAPP_NAME,
-		ENV:      *envENV,
-		PORT:     *envPORT,
-		PREFORK:  *envPREFORK,
-
-		LOG_LEVEL:      *envLOG_LEVEL,
-		LOG_CONSOLE:    *envLOG_CONSOLE,
-		LOG_FILE:       *envLOG_FILE,
-		LOG_DIR:        *envLOG_DIR,
-		LOG_MAX_SIZE:   *envLOG_MAX_SIZE,
-		LOG_MAX_AGE:    *envLOG_MAX_AGE,
-		LOG_MAX_BACKUP: *envLOG_MAX_BACKUP,
-		LOG_JSON:       *envLOG_JSON,
-
-		DB_DRIVER:   *envDBDriver,
-		DB_HOST:     *envDBHost,
-		DB_PORT:     *envDBPort,
-		DB_NAME:     *envDBName,
-		DB_USERNAME: *envDBUsername,
-		DB_PASSWORD: *envDBPassword,
-		DB_SSLMODE:  *envDBSSLMode,
-
-		SESSION_DRIVER: *envSESSION_DRIVER,
-	}, nil
+	config := new(Config)
+	err := load(config)
+	return config, err
 }

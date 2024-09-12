@@ -1,39 +1,68 @@
 package system
 
 import (
-	"go.uber.org/fx"
+	"fmt"
 
-	"github.com/mrrizkin/boot/app/domains/user"
-	"github.com/mrrizkin/boot/app/domains/welcome"
+	"github.com/mrrizkin/boot/routes"
+
 	"github.com/mrrizkin/boot/app/models"
-
 	"github.com/mrrizkin/boot/system/config"
 	"github.com/mrrizkin/boot/system/database"
-	"github.com/mrrizkin/boot/system/logger"
 	"github.com/mrrizkin/boot/system/server"
 	"github.com/mrrizkin/boot/system/session"
+	"github.com/mrrizkin/boot/system/stypes"
+	"github.com/mrrizkin/boot/system/validator"
+	"github.com/mrrizkin/boot/third-party/hashing"
+	"github.com/mrrizkin/boot/third-party/logger"
 )
 
 func Run() {
-	fx.New(
-		fx.WithLogger(logger.NewFxLogger),
-		fx.Provide(
-			config.New,
-			logger.New,
+	conf, err := config.New()
+	if err != nil {
+		panic(err)
+	}
+	log, err := logger.Zerolog(conf)
+	if err != nil {
+		panic(err)
+	}
+	sess, err := session.New(conf)
+	if err != nil {
+		panic(err)
+	}
+	defer sess.Stop()
+	hash := hashing.Argon2(*conf)
 
-			models.New,
-			database.New,
-			session.New,
+	model := models.New(conf, hash)
+	db, err := database.New(conf, model, log)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Stop()
+	err = db.Start()
+	if err != nil {
+		panic(err)
+	}
 
-			user.NewUserRepo,
-			user.NewUserHandler,
-			user.NewUserService,
+	valid := validator.New()
+	serv := server.New(conf, log)
 
-			welcome.NewWelcomeHandler,
+	routes.Setup(&stypes.App{
+		App: serv.App,
+		System: &stypes.System{
+			Logger:    log,
+			Database:  db,
+			Config:    conf,
+			Session:   sess,
+			Validator: valid,
+		},
+		Library: &stypes.Library{
+			Hashing: hash,
+		},
+	}, sess)
 
-			server.New,
-			server.NewRoutes,
-		),
-		fx.Invoke(server.Serve),
-	).Run()
+	log.Info(fmt.Sprintf("Server is running on port %d", conf.PORT))
+
+	if err := serv.Serve(); err != nil {
+		panic(err)
+	}
 }
