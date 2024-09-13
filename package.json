@@ -8,8 +8,8 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^5.3.1",
+    "vite": "^5.4.4",
     "vite-plugin-backend": "^1.0.0",
-    "vite-plugin-full-reload": "^1.1.0"
+    "vite-plugin-full-reload": "^1.2.0"
   }
 }
