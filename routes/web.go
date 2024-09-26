@@ -11,6 +11,6 @@ import (
 func WebRoutes(app *stypes.App, handler *handlers.Handlers) {
 	ui := app.Group("/", cors.New())
 	ui.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+		return handler.Render(c, "welcome")
 	})
 }

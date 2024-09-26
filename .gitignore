@@ -41,3 +41,7 @@ public/build
 
 
 node_modules
+
+database*
+
+public/hot

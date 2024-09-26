@@ -1,15 +1,7 @@
-body {
-    background-color: #f8f8f8;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.bg-black {
-    background-color: #000;
-}
-
-.text-white {
-    color: #fff;
+[x-cloak] {
+  display: none;
 }

@@ -7,6 +7,7 @@ import (
 	"github.com/mrrizkin/boot/system/database"
 	"github.com/mrrizkin/boot/system/session"
 	"github.com/mrrizkin/boot/system/validator"
+	"github.com/mrrizkin/boot/system/view"
 	"github.com/mrrizkin/boot/third-party/hashing"
 	"github.com/mrrizkin/boot/third-party/logger"
 )
@@ -50,6 +51,7 @@ type System struct {
 	Config    *config.Config
 	Session   *session.Session
 	Validator *validator.Validator
+	View      view.View
 }
 
 type Library struct {

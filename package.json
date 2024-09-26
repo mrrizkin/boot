@@ -1,15 +1,28 @@
 {
-  "name": "foo",
+  "name": "boot",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev:assets": "vite",
+    "dev:app": "air",
+    "build:assets": "vite build",
+    "build:app": "go build ./cmd/main/main.go",
+    "dev": "concurrently \"pnpm dev:assets\" \"bash -c 'sleep 5 && pnpm dev:app'\"",
+    "build": "pnpm build:assets && pnpm build:app"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
     "vite": "^5.4.4",
     "vite-plugin-backend": "^1.0.0",
     "vite-plugin-full-reload": "^1.2.0"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.1",
+    "axios": "^1.7.7",
+    "htmx.org": "2.0.2"
   }
 }

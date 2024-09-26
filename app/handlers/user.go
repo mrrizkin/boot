@@ -1,9 +1,12 @@
 package handlers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 
 	"github.com/mrrizkin/boot/app/models"
+	"github.com/mrrizkin/boot/system/eyoy"
 	"github.com/mrrizkin/boot/system/stypes"
 )
 
@@ -27,8 +30,8 @@ func (h *Handlers) UserCreate(c *fiber.Ctx) error {
 	if err != nil {
 		h.System.Logger.Error(err, "failed create user")
 		return &fiber.Error{
-			Code:    500,
-			Message: "failed create user",
+			Code:    eyoy.FAILED_CREATE_USER,
+			Message: fmt.Sprintf("failed create user: %s", err),
 		}
 	}
 
@@ -46,8 +49,8 @@ func (h *Handlers) UserFindAll(c *fiber.Ctx) error {
 	if err != nil {
 		h.System.Logger.Error(err, "failed get users")
 		return &fiber.Error{
-			Code:    500,
-			Message: "failed get users",
+			Code:    eyoy.FAILED_GET_USER,
+			Message: fmt.Sprintf("failed get users: %s", err),
 		}
 	}
 
@@ -86,8 +89,8 @@ func (h *Handlers) UserFindByID(c *fiber.Ctx) error {
 
 		h.System.Logger.Error(err, "failed get user")
 		return &fiber.Error{
-			Code:    500,
-			Message: "failed get user",
+			Code:    eyoy.FAILED_GET_USER,
+			Message: fmt.Sprintf("failed get users: %s", err),
 		}
 	}
 
@@ -128,8 +131,8 @@ func (h *Handlers) UserUpdate(c *fiber.Ctx) error {
 	if err != nil {
 		h.System.Logger.Error(err, "failed update user")
 		return &fiber.Error{
-			Code:    500,
-			Message: "failed update user",
+			Code:    eyoy.FAILED_UPDATE_USESR,
+			Message: fmt.Sprintf("failed update user: %s", err),
 		}
 	}
 
@@ -161,7 +164,7 @@ func (h *Handlers) UserDelete(c *fiber.Ctx) error {
 
 	if user.ID == uint(id) {
 		return &fiber.Error{
-			Code:    400,
+			Code:    eyoy.FAILED_DELETE_USESR,
 			Message: "cannot delete yourself",
 		}
 	}
@@ -170,8 +173,8 @@ func (h *Handlers) UserDelete(c *fiber.Ctx) error {
 	if err != nil {
 		h.System.Logger.Error(err, "failed delete user")
 		return &fiber.Error{
-			Code:    500,
-			Message: "failed delete user",
+			Code:    eyoy.FAILED_DELETE_USESR,
+			Message: fmt.Sprintf("failed delete user: %s", err),
 		}
 	}
 

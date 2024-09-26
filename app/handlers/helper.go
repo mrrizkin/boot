@@ -2,12 +2,14 @@ package handlers
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 
 	"github.com/mrrizkin/boot/app/models"
 	"github.com/mrrizkin/boot/system/stypes"
+	"github.com/mrrizkin/boot/system/view/tag"
 )
 
 type StreamResponse struct {
@@ -55,4 +57,23 @@ func (h *Handlers) GetPaginationQuery(c *fiber.Ctx) stypes.Pagination {
 		Page:    page,
 		PerPage: perPage,
 	}
+}
+
+func (h *Handlers) Render(c *fiber.Ctx, name string, data ...fiber.Map) error {
+	ctx := fiber.Map{}
+	if len(data) > 0 {
+		ctx = data[0]
+	}
+
+	requestID := c.Locals("requestid").(string)
+	ctx["requestID"] = requestID
+	var buf bytes.Buffer
+	err := h.System.View.Render(&buf, name, ctx)
+	if err != nil {
+		return err
+	}
+
+	tag.StackStore.Clear(requestID)
+
+	return c.Type("html").Send(buf.Bytes())
 }

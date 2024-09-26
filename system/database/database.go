@@ -96,19 +96,21 @@ func New(config *config.Config, model *models.Model, logger logger.Logger) (*Dat
 	}, nil
 }
 
-func (d *Database) Start() error {
-	if d.config.ENV != "prod" && d.config.ENV != "production" {
-		d.logger.Info("Migrating model")
-		err := d.model.Migrate(d.DB)
-		if err != nil {
-			return err
-		}
+func (d *Database) Migrate() error {
+	d.logger.Info("Migrating model")
+	err := d.model.Migrate(d.DB)
+	if err != nil {
+		return err
+	}
 
-		d.logger.Info("Seeding model")
-		err = d.model.Seeds(d.DB)
-		if err != nil {
-			return err
-		}
+	return nil
+}
+
+func (d *Database) Seeder() error {
+	d.logger.Info("Seeding model")
+	err := d.model.Seeds(d.DB)
+	if err != nil {
+		return err
 	}
 
 	return nil

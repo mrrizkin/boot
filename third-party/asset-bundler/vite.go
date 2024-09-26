@@ -4,18 +4,18 @@ import (
 	goviteparser "github.com/mrrizkin/go-vite-parser"
 )
 
-type vite struct {
+type ViteManifest struct {
 	manifest *goviteparser.ViteManifestInfo
 }
 
-func newVite(config *goviteparser.Config) *vite {
+func newVite(config *goviteparser.Config) *ViteManifest {
 	manifest := goviteparser.Parse(*config)
-	return &vite{
+	return &ViteManifest{
 		manifest: &manifest,
 	}
 }
 
-func (v *vite) Entry(entries ...string) string {
+func (v *ViteManifest) Entry(entries ...string) string {
 	if v.manifest.IsDev() {
 		return v.manifest.RenderDevEntriesTag(entries...)
 	}
@@ -23,7 +23,7 @@ func (v *vite) Entry(entries ...string) string {
 	return v.manifest.RenderEntriesTag(entries...)
 }
 
-func (v *vite) ReactRefresh() string {
+func (v *ViteManifest) ReactRefresh() string {
 	if v.manifest.IsDev() {
 		return v.manifest.RenderReactRefreshTag()
 	}

@@ -17,10 +17,9 @@ type (
 	}
 
 	GlobalErrorResponse struct {
-		Title   string `json:"title"`
-		Message string `json:"message"`
-		Status  string `json:"status"`
-		Detail  string `json:"detail"`
+		Title  string `json:"title"`
+		Status string `json:"status"`
+		Detail string `json:"detail"`
 	}
 
 	Validator struct {

@@ -16,6 +16,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 
 	"github.com/mrrizkin/boot/system/config"
+	"github.com/mrrizkin/boot/system/eyoy"
 	"github.com/mrrizkin/boot/system/validator"
 	"github.com/mrrizkin/boot/third-party/logger"
 )
@@ -38,11 +39,18 @@ func New(config *config.Config, logger logger.Logger) *Server {
 				code = e.Code
 			}
 
+			title := ""
+
+			if code < 600 {
+				title = http.StatusText(code)
+			} else {
+				title = eyoy.StatusTitle(code)
+			}
+
 			return c.Status(code).JSON(validator.GlobalErrorResponse{
-				Status:  "error",
-				Title:   http.StatusText(code),
-				Detail:  err.Error(),
-				Message: err.Error(),
+				Status: "error",
+				Title:  title,
+				Detail: err.Error(),
 			})
 		},
 	})
