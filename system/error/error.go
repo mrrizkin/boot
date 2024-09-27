@@ -1,4 +1,4 @@
-package eyoy
+package error
 
 const DEFAULT = 600
 
