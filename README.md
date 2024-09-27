@@ -2,83 +2,115 @@
 
 ## Overview
 
-`boot` is a web application project that uses a combination of Go for backend development and Vite for managing frontend assets. The project also leverages several popular libraries and tools such as TailwindCSS for styling, Alpine.js for frontend reactivity, and HTMX for handling modern interactions without the need for a full frontend framework.
+Boot is a sophisticated, full-stack web application boilerplate that leverages the power of Go for backend development and modern frontend technologies. It's designed to provide a robust starting point for building scalable, high-performance web applications. Currently, Boot uses Gofiber as its primary web framework, with plans to potentially support Chi and Echo in the future.
 
-## Table of Contents
+## Key Features
 
-- [Getting Started](#getting-started)
-- [Scripts](#scripts)
-- [Dependencies](#dependencies)
-  - [Development Dependencies](#development-dependencies)
-  - [Runtime Dependencies](#runtime-dependencies)
-- [Build and Development](#build-and-development)
+- **Go-powered Backend**: Utilizes the Gofiber framework for high-performance HTTP serving
+- **Modern Frontend Tooling**: Incorporates Vite for efficient asset bundling and hot module replacement
+- **Responsive Styling**: Integrates TailwindCSS for utility-first styling
+- **Dynamic UI**: Employs Alpine.js for lightweight reactivity and HTMX for seamless server interactions
+- **Flexible Database Support**: Configurable with MySQL, PostgreSQL, or SQLite via GORM
+- **Advanced Logging**: Implements structured logging with zerolog
+- **Environment Management**: Supports easy configuration via .env files
+- **Server-side Rendering**: Utilizes the Gonja templating engine for efficient HTML generation
+- **Form Validation**: Incorporates request validation using go-playground/validator
+- **Session Management**: Built-in support for various session storage options
+- **Asset Bundling**: Custom Vite integration for optimized asset management
+- **Extensible Architecture**: Modular design allowing for easy customization and extension
+
+## Project Structure
+
+```
+.
+├── app/
+│   ├── domains/              # Business logic implementation
+│   ├── handlers/             # HTTP request handling and payload validation
+│   ├── models/               # Database schema definitions
+│   ├── types/                # Application-level type definitions
+│   └── utils/                # Application-specific utilities
+├── cmd/
+│   └── main/                 # Application entry point
+├── public/                   # Static file serving
+├── resources/
+│   ├── assets/               # Frontend assets (CSS, JS, web components)
+│   └── views/                # Gonja templates for server-side rendering
+├── routes/                   # Routing and middleware definitions
+├── storage/                  # Application storage (e.g., logs)
+├── system/                   # Core system components
+│   ├── config/               # Configuration management
+│   ├── database/             # Database connection handling
+│   ├── error/                # System-level error definitions
+│   ├── server/               # Server bootstrapping
+│   ├── session/              # Session management
+│   ├── validator/            # Request validation
+│   └── view/                 # View rendering and custom template functions
+└── third-party/              # Third-party integrations
+    ├── asset-bundler/        # Custom Vite integration
+    ├── hashing/              # Password hashing utilities
+    ├── logger/               # Logging configuration
+    └── scheduler/            # Task scheduling
+```
 
 ## Getting Started
 
-To start developing or building the project, ensure that you have the following tools installed:
+### Prerequisites
 
+- Go (version 1.22.2 or later)
 - Node.js
 - PNPM (Package Manager)
-- Go
 
-### Install Dependencies
+### Installation
 
-Run the following command to install both development and runtime dependencies:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mrrizkin/boot.git
+   cd boot
+   ```
 
-```bash
-pnpm install
-```
+2. Install dependencies:
+   ```bash
+   pnpm run setup
+   ```
 
-## Scripts
+3. Configure your environment:
+   - Copy `.env.example` to `.env`
+   - Adjust settings in `.env` as needed
 
-The project contains several scripts for development and production builds:
+4. Start the development server:
+   ```bash
+   pnpm run dev
+   ```
 
-### Development Scripts
+## Development Workflow
 
-- `pnpm dev:assets`: Runs Vite in development mode to serve and watch the frontend assets.
-- `pnpm dev:app`: Starts the backend application using `air` for live-reloading in Go.
-- `pnpm dev`: Runs both the frontend and backend in parallel using `concurrently`. It waits 5 seconds before starting the backend to ensure that the frontend assets are ready.
+- `pnpm run dev`: Concurrently starts the Vite dev server and Go backend with hot-reloading
+- `pnpm run build`: Builds frontend assets and compiles the Go backend for production
 
-### Build Scripts
+## Customization
 
-- `pnpm build:assets`: Builds the frontend assets using Vite for production.
-- `pnpm build:app`: Compiles the Go backend application located in `./cmd/main/main.go`.
-- `pnpm build`: Executes both `build:assets` and `build:app` scripts in sequence to create a production build.
+Boot is designed with extensibility in mind:
 
-## Dependencies
+1. **Backend Logic**: Implement your business logic in `app/domains/`
+2. **API Endpoints**: Define new routes in `routes/` and implement handlers in `app/handlers/`
+3. **Database Schema**: Add or modify models in `app/models/`
+4. **Frontend Assets**: Manage your CSS and JavaScript in `resources/assets/`
+5. **Views**: Create or edit Gonja templates in `resources/views/`
+6. **Middleware**: Implement custom middleware in `routes/middleware/`
+7. **Configuration**: Adjust application settings in `system/config/`
 
-### Development Dependencies
+## Best Practices
 
-The following packages are used for development purposes:
+- Follow Go's official [style guide](https://golang.org/doc/effective_go) and [code review comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- Utilize the domain-driven design principles in the `app/domains/` directory
+- Leverage the built-in error handling and logging mechanisms for consistent error management
+- Use the provided validator for all incoming request payloads
+- Implement unit tests for your business logic and integration tests for your API endpoints
 
-- `autoprefixer`: Automatically adds vendor prefixes to CSS.
-- `concurrently`: Runs multiple commands concurrently (e.g., both frontend and backend servers).
-- `postcss`: A tool for transforming CSS with JavaScript plugins.
-- `tailwindcss`: A utility-first CSS framework.
-- `vite`: A fast frontend build tool and dev server.
-- `vite-plugin-backend`: A Vite plugin to work with backend integrations.
-- `vite-plugin-full-reload`: A Vite plugin that enables full reload on backend changes.
+## Contributing
 
-### Runtime Dependencies
+We welcome contributions to Boot. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-These are the main runtime dependencies for the project:
+## License
 
-- `alpinejs`: A lightweight JavaScript framework for declarative rendering.
-- `axios`: A promise-based HTTP client for the browser and Node.js.
-- `htmx.org`: A modern library for simplifying dynamic web page interactions without using JavaScript frameworks.
-
-## Build and Development
-
-To start developing, run the following command to serve both the frontend and backend in parallel:
-
-```bash
-pnpm dev
-```
-
-To create a production build:
-
-```bash
-pnpm build
-```
-
-This will generate optimized frontend assets and compile the Go backend into a binary.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
