@@ -10,9 +10,8 @@ import (
 )
 
 type PushControlStructure struct {
-	name     string
-	position *tokens.Token
-	wrapper  *nodes.Wrapper
+	name    string
+	wrapper *nodes.Wrapper
 }
 
 func (controlStructure *PushControlStructure) Position() *tokens.Token {
@@ -27,19 +26,17 @@ func (controlStructure *PushControlStructure) Execute(
 	r *exec.Renderer,
 	tag *nodes.ControlStructureBlock,
 ) error {
-	requestID, ok := r.Environment.Context.Get("requestID")
+	id, ok := r.Environment.Context.Get("gonja-tag-state-id")
 	if !ok {
 		return nil
 	}
 
-	StackStore.Push(requestID.(string), controlStructure.name, controlStructure.wrapper)
+	State.Push(id.(string), controlStructure.name, controlStructure.wrapper)
 	return nil
 }
 
 func pushParser(p *parser.Parser, args *parser.Parser) (nodes.ControlStructure, error) {
-	controlStructure := &PushControlStructure{
-		position: p.Current(),
-	}
+	controlStructure := new(PushControlStructure)
 
 	wrapper, _, err := p.WrapUntil("endpush")
 	if err != nil {

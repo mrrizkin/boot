@@ -16,7 +16,7 @@ type Hashing interface {
 	CompareHash(str, hash string) (bool, error)
 }
 
-func Argon2(config config.Config) Hashing {
+func Argon2(config *config.Config) Hashing {
 	return newArgon(
 		uint32(config.HASH_MEMORY),
 		uint32(config.HASH_ITERATIONS),

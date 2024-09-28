@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"io"
 
-	assetbundler "github.com/mrrizkin/boot/third-party/asset-bundler"
-	goviteparser "github.com/mrrizkin/go-vite-parser"
 	"github.com/nikolalohinski/gonja/v2/exec"
 	"github.com/nikolalohinski/gonja/v2/nodes"
 	"github.com/nikolalohinski/gonja/v2/parser"
@@ -13,9 +11,8 @@ import (
 )
 
 type ViteControlStructure struct {
-	entry        string
-	assetbundler assetbundler.ViteManifest
-	position     *tokens.Token
+	entry    string
+	position *tokens.Token
 }
 
 func (controlStructure *ViteControlStructure) Position() *tokens.Token {
@@ -30,18 +27,13 @@ func (controlStructure *ViteControlStructure) Execute(
 	r *exec.Renderer,
 	tag *nodes.ControlStructureBlock,
 ) error {
-	_, err := io.WriteString(r.Output, controlStructure.assetbundler.Entry(controlStructure.entry))
+	_, err := io.WriteString(r.Output, vite.Entry(controlStructure.entry))
 	return err
 }
 
 func viteParser(p *parser.Parser, args *parser.Parser) (nodes.ControlStructure, error) {
 	controlStructure := &ViteControlStructure{
 		position: p.Current(),
-		assetbundler: *assetbundler.Vite(&goviteparser.Config{
-			OutDir:       "/build/",
-			ManifestPath: "public/build/manifest.json",
-			HotFilePath:  "public/hot",
-		}),
 	}
 
 	modeToken := args.Match(tokens.String)

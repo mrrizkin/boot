@@ -65,15 +65,18 @@ func (h *Handlers) Render(c *fiber.Ctx, name string, data ...fiber.Map) error {
 		ctx = data[0]
 	}
 
-	requestID := c.Locals("requestid").(string)
-	ctx["requestID"] = requestID
+	id, err := tag.State.GenerateID()
+	if err != nil {
+		return err
+	}
+	ctx["gonja-tag-state-id"] = id
 	var buf bytes.Buffer
-	err := h.System.View.Render(&buf, name, ctx)
+	err = h.System.View.Render(&buf, name, ctx)
 	if err != nil {
 		return err
 	}
 
-	tag.StackStore.Clear(requestID)
+	tag.State.Clear(id)
 
 	return c.Type("html").Send(buf.Bytes())
 }

@@ -5,7 +5,7 @@ import fullReload from "vite-plugin-full-reload";
 export default defineConfig({
   plugins: [
     backendPlugin({
-      input: ["resources/assets/js/app.js"],
+      input: ["resources/js/app.js"],
     }),
     fullReload(["tmp/main"]),
   ],

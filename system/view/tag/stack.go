@@ -26,12 +26,12 @@ func (controlStructure *StackControlStructure) Execute(
 	r *exec.Renderer,
 	tag *nodes.ControlStructureBlock,
 ) error {
-	requestID, ok := r.Environment.Context.Get("requestID")
+	id, ok := r.Environment.Context.Get("gonja-tag-state-id")
 	if !ok {
 		return nil
 	}
 
-	wrappers := StackStore.Get(requestID.(string), controlStructure.name)
+	wrappers := State.Get(id.(string), controlStructure.name)
 	for _, wrapper := range wrappers {
 		sub := r.Inherit()
 		err := sub.ExecuteWrapper(wrapper)

@@ -33,7 +33,7 @@ func Run() error {
 		return err
 	}
 	defer sess.Stop()
-	hash := hashing.Argon2(*conf)
+	hash := hashing.Argon2(conf)
 
 	model := models.New(conf, hash)
 	db, err := database.New(conf, model, log)
@@ -63,7 +63,7 @@ func Run() error {
 		Library: &stypes.Library{
 			Hashing: hash,
 		},
-	}, sess)
+	})
 
 	log.Info(fmt.Sprintf("Server is running on port %d", conf.PORT))
 
@@ -83,7 +83,7 @@ func MigrateDB() error {
 	if err != nil {
 		return err
 	}
-	hash := hashing.Argon2(*conf)
+	hash := hashing.Argon2(conf)
 	model := models.New(conf, hash)
 	db, err := database.New(conf, model, log)
 	if err != nil {
@@ -106,7 +106,7 @@ func SeedDB() error {
 	if err != nil {
 		return err
 	}
-	hash := hashing.Argon2(*conf)
+	hash := hashing.Argon2(conf)
 	model := models.New(conf, hash)
 	db, err := database.New(conf, model, log)
 	if err != nil {

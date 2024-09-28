@@ -40,6 +40,14 @@ type Config struct {
 	DB_SSLMODE  string `env:"DB_SSLMODE,default=disable"`
 
 	SESSION_DRIVER string `env:"SESSION_DRIVER,default=file"`
+
+	CSRF_KEY         string `env:"CSRF_KEY,default=X-CSRF-Token"`
+	CSRF_COOKIE_NAME string `env:"CSRF_COOKIE_NAME,default=fiber_csrf_token"`
+	CSRF_SAME_SITE   string `env:"CSRF_SAME_SITE,default=Lax"`
+	CSRF_SECURE      bool   `env:"CSRF_SECURE,default=false"`
+	CSRF_SESSION     bool   `env:"CSRF_SESSION,default=true"`
+	CSRF_HTTP_ONLY   bool   `env:"CSRF_HTTP_ONLY,default=true"`
+	CSRF_EXPIRATION  int    `env:"CSRF_EXPIRATION,default=3600"`
 }
 
 func New() (*Config, error) {
