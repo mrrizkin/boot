@@ -1,33 +1,27 @@
+// Package main is the entry point for the application.
+// Users typically do not need to modify this file.
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
 	"github.com/mrrizkin/boot/system"
 )
 
+// main is the entry point of the application.
+// It initializes and runs the system, handling any errors that occur.
+//
+// Note to users: This file serves as the standard entry point for the application.
+// In most cases, you should not need to modify this file. Customizations and
+// additional functionality should be implemented in other packages, particularly
+// within the 'system' package or your own application-specific packages.
 func main() {
-	if err := run(); err != nil {
+	// Run the system and handle any errors
+	if err := system.Run(); err != nil {
+		// If an error occurs, print it to stderr and exit with a non-zero status
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
-}
-
-func run() error {
-	migrate := flag.Bool("migrate", false, "migrate database")
-	seeder := flag.Bool("seeder", false, "seeding database")
-	flag.Parse()
-
-	switch {
-	case *migrate:
-		return system.MigrateDB()
-	case *seeder:
-		return system.SeedDB()
-	case len(os.Args) > 1 && os.Args[1] == "run":
-		return system.Run()
-	default:
-		return fmt.Errorf("no valid command provided. Use 'run' to start the server")
-	}
+	// If system.Run() completes without error, the program will exit normally
 }

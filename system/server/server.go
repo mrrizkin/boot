@@ -3,11 +3,9 @@ package server
 import (
 	"errors"
 	"fmt"
-	"net/http"
 
 	"github.com/gofiber/contrib/fiberzerolog"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/idempotency"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
@@ -16,7 +14,6 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 
 	"github.com/mrrizkin/boot/system/config"
-	systemError "github.com/mrrizkin/boot/system/error"
 	"github.com/mrrizkin/boot/system/validator"
 	"github.com/mrrizkin/boot/third-party/logger"
 )
@@ -25,6 +22,7 @@ type Server struct {
 	*fiber.App
 
 	config *config.Config
+	log    logger.Logger
 }
 
 func New(config *config.Config, logger logger.Logger) *Server {
@@ -39,17 +37,8 @@ func New(config *config.Config, logger logger.Logger) *Server {
 				code = e.Code
 			}
 
-			title := ""
-
-			if code < 600 {
-				title = http.StatusText(code)
-			} else {
-				title = systemError.StatusTitle(code)
-			}
-
 			return c.Status(code).JSON(validator.GlobalErrorResponse{
 				Status: "error",
-				Title:  title,
 				Detail: err.Error(),
 			})
 		},
@@ -60,17 +49,18 @@ func New(config *config.Config, logger logger.Logger) *Server {
 		Logger: logger.GetLogger().(*zerolog.Logger),
 	}))
 	app.Use(requestid.New())
-	app.Use(helmet.New())
 	app.Use(recover.New())
 	app.Use(idempotency.New())
 
 	return &Server{
 		App:    app,
 		config: config,
+		log:    logger,
 	}
 }
 
 func (s *Server) Serve() error {
+	s.log.Info("Server running", "port", s.config.PORT)
 	return s.Listen(fmt.Sprintf(":%d", s.config.PORT))
 }
 

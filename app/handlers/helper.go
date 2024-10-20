@@ -1,24 +1,19 @@
+// Package handlers provides HTTP request handlers and helper functions.
+// This file contains utility functions used across multiple handlers
+// to perform common tasks such as user retrieval, pagination, JSON response
+// sending, and request body parsing and validation.
 package handlers
 
 import (
-	"bufio"
-	"bytes"
-	"fmt"
-
 	"github.com/gofiber/fiber/v2"
 
 	"github.com/mrrizkin/boot/app/models"
-	"github.com/mrrizkin/boot/system/stypes"
-	"github.com/mrrizkin/boot/system/view/tag"
+	"github.com/mrrizkin/boot/system/types"
 )
 
-type StreamResponse struct {
-	ID    string
-	Event string
-	Data  interface{}
-}
-
-func (h *Handlers) GetUser(c *fiber.Ctx) *models.User {
+// getUser retrieves the user from the database based on the user ID stored in the request context.
+// Returns nil if the user is not found or an error occurs.
+func (h *Handlers) getUser(c *fiber.Ctx) *models.User {
 	userId := c.Locals("uid").(uint)
 	user, err := h.userRepo.FindByID(userId)
 	if err != nil {
@@ -28,7 +23,18 @@ func (h *Handlers) GetUser(c *fiber.Ctx) *models.User {
 	return user
 }
 
-func (h *Handlers) SendJson(c *fiber.Ctx, resp interface{}, status ...int) error {
+// getPaginateQuery extracts pagination parameters from the request query.
+// It returns a Pagination struct with default values if not specified in the query.
+func (h *Handlers) getPaginateQuery(c *fiber.Ctx) types.Pagination {
+	return types.Pagination{
+		Page:    c.QueryInt("page", 1),
+		PerPage: c.QueryInt("per_page", 10),
+	}
+}
+
+// sendJson sends a JSON response with the given data and status code.
+// If no status code is provided, it defaults to 200 (OK).
+func (h *Handlers) sendJson(c *fiber.Ctx, resp interface{}, status ...int) error {
 	var statusCode int
 
 	if len(status) == 0 {
@@ -40,43 +46,22 @@ func (h *Handlers) SendJson(c *fiber.Ctx, resp interface{}, status ...int) error
 	return c.Status(statusCode).JSON(resp)
 }
 
-func (h *Handlers) SendStream(w *bufio.Writer, resp *StreamResponse) error {
-	_, err := fmt.Fprintf(w, "id: %s\nevent: %s\ndata: %s\n\n", resp.ID, resp.Event, resp.Data)
+// bodyParseValidate parses the request body into the given struct and validates it.
+// It returns an error if parsing fails or if the data doesn't pass validation.
+func (h *Handlers) bodyParseValidate(c *fiber.Ctx, out interface{}) error {
+	err := c.BodyParser(out)
 	if err != nil {
-		return err
+		h.Log("error", "failed to parse payload", "err", err)
+		return &fiber.Error{
+			Code:    400,
+			Message: "payload not valid",
+		}
+	}
+
+	validationError := h.System.Validator.MustValidate(out)
+	if validationError != nil {
+		return validationError
 	}
 
 	return nil
-}
-
-func (h *Handlers) GetPaginationQuery(c *fiber.Ctx) stypes.Pagination {
-	page := c.QueryInt("page", 1)
-	perPage := c.QueryInt("per_page", 10)
-
-	return stypes.Pagination{
-		Page:    page,
-		PerPage: perPage,
-	}
-}
-
-func (h *Handlers) Render(c *fiber.Ctx, name string, data ...fiber.Map) error {
-	ctx := fiber.Map{}
-	if len(data) > 0 {
-		ctx = data[0]
-	}
-
-	id, err := tag.State.GenerateID()
-	if err != nil {
-		return err
-	}
-	ctx["gonja-tag-state-id"] = id
-	var buf bytes.Buffer
-	err = h.System.View.Render(&buf, name, ctx)
-	if err != nil {
-		return err
-	}
-
-	tag.State.Clear(id)
-
-	return c.Type("html").Send(buf.Bytes())
 }

@@ -3,8 +3,12 @@ package user
 import (
 	"github.com/mrrizkin/boot/app/models"
 	"github.com/mrrizkin/boot/system/database"
-	"github.com/mrrizkin/boot/system/stypes"
+	"github.com/mrrizkin/boot/system/types"
 )
+
+type Repo struct {
+	db *database.Database
+}
 
 func NewRepo(db *database.Database) *Repo {
 	return &Repo{db}
@@ -14,9 +18,7 @@ func (r *Repo) Create(user *models.User) error {
 	return r.db.Create(user).Error
 }
 
-func (r *Repo) FindAll(
-	pagination stypes.Pagination,
-) ([]models.User, error) {
+func (r *Repo) FindAll(pagination types.Pagination) ([]models.User, error) {
 	users := make([]models.User, 0)
 	err := r.db.
 		Preload("Role").

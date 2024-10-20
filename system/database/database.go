@@ -57,14 +57,14 @@ func New(config *config.Config, model *models.Model, logger logger.Logger) (*Dat
 
 		err = db.Exec("PRAGMA journal_mode = WAL;").Error
 		if err != nil {
-			logger.Error(err, "Failed to enable WAL journal mode")
+			logger.Error("Failed to enable WAL journal mode", "err", err)
 		} else {
 			logger.Info("Enabled WAL journal mode")
 		}
 
 		err = db.Exec("PRAGMA foreign_keys = ON;").Error
 		if err != nil {
-			logger.Error(err, "Failed to enable foreign keys")
+			logger.Error("Failed to enable foreign keys", "err", err)
 		} else {
 			logger.Info("Enabled foreign keys")
 		}

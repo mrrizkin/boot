@@ -90,7 +90,12 @@ func (j *jinja2) Render(w io.Writer, template string, data ...map[string]interfa
 		ctx = data[0]
 	}
 
-	return j.templates[template].Execute(w, exec.NewContext(ctx))
+	tmpl, ok := j.templates[template]
+	if !ok {
+		return fmt.Errorf("template %s not found", template)
+	}
+
+	return tmpl.Execute(w, exec.NewContext(ctx))
 }
 
 type httpFilesystemLoader struct {

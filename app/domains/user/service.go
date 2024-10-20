@@ -1,12 +1,17 @@
 package user
 
 import (
-	"errors"
+	"fmt"
 
 	"github.com/mrrizkin/boot/app/models"
-	"github.com/mrrizkin/boot/system/stypes"
+	"github.com/mrrizkin/boot/system/types"
 	"github.com/mrrizkin/boot/third-party/hashing"
 )
+
+type Service struct {
+	repo    *Repo
+	hashing hashing.Hashing
+}
 
 func NewService(repo *Repo, hashing hashing.Hashing) *Service {
 	return &Service{repo, hashing}
@@ -14,7 +19,7 @@ func NewService(repo *Repo, hashing hashing.Hashing) *Service {
 
 func (s *Service) Create(user *models.User) (*models.User, error) {
 	if user.Password == nil {
-		return nil, errors.New("password is required")
+		return nil, fmt.Errorf("password is required")
 	}
 
 	hash, err := s.hashing.GenerateHash(*user.Password)
@@ -31,7 +36,7 @@ func (s *Service) Create(user *models.User) (*models.User, error) {
 	return user, nil
 }
 
-func (s *Service) FindAll(pagination stypes.Pagination) (*PaginatedUser, error) {
+func (s *Service) FindAll(pagination types.Pagination) (*PaginatedUser, error) {
 	users, err := s.repo.FindAll(pagination)
 	if err != nil {
 		return nil, err
@@ -87,6 +92,10 @@ func (s *Service) Update(id uint, user *models.User) (*models.User, error) {
 	return user, nil
 }
 
-func (s *Service) Delete(id uint) error {
+func (s *Service) Delete(userLogin *models.User, id uint) error {
+	if userLogin.ID == uint(id) {
+		return fmt.Errorf("cannot delete yourself")
+	}
+
 	return s.repo.Delete(id)
 }

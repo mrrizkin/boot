@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func load(cfg interface{}) error {
+func load(cfg *Config) error {
 	v := reflect.ValueOf(cfg).Elem()
 	t := v.Type()
 
@@ -50,18 +50,21 @@ func load(cfg interface{}) error {
 		switch fieldValue.Kind() {
 		case reflect.String:
 			fieldValue.SetString(value)
+			cfg.Set(field.Name, value)
 		case reflect.Int:
 			intValue, err := strconv.Atoi(value)
 			if err != nil {
 				return fmt.Errorf("error converting %s to int: %v", value, err)
 			}
 			fieldValue.SetInt(int64(intValue))
+			cfg.Set(field.Name, int64(intValue))
 		case reflect.Bool:
 			boolValue, err := strconv.ParseBool(value)
 			if err != nil {
 				return fmt.Errorf("error converting %s to bool: %v", value, err)
 			}
 			fieldValue.SetBool(boolValue)
+			cfg.Set(field.Name, boolValue)
 		default:
 			return fmt.Errorf("unsupported field type %s", field.Type)
 		}

@@ -28,14 +28,6 @@ func stat(fs http.FileSystem, name string) (os.FileInfo, error) {
 	return f.Stat()
 }
 
-func walk(fs http.FileSystem, root string, walkFn filepath.WalkFunc) error {
-	info, err := stat(fs, root)
-	if err != nil {
-		return walkFn(root, nil, err)
-	}
-	return walkInternal(fs, root, info, walkFn)
-}
-
 func walkInternal(
 	fs http.FileSystem,
 	path string,

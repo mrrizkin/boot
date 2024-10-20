@@ -1,23 +1,21 @@
 package middleware
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 
+	"github.com/mrrizkin/boot/app"
 	"github.com/mrrizkin/boot/app/handlers"
-	"github.com/mrrizkin/boot/system/stypes"
 )
 
-func mockGetUserByToken(token string) (uint, string, error) {
-	return 1, "session-id", nil
-}
-
-func AuthProtected(app *stypes.App, handler *handlers.Handlers) fiber.Handler {
+func AuthProtected(app *app.App, handler *handlers.Handlers) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		session, err := app.System.Session.Get(c)
+		session, err := app.Session(c)
 		if err != nil {
 			return &fiber.Error{
 				Code:    fiber.StatusInternalServerError,
-				Message: "Failed to get session",
+				Message: fmt.Sprintf("failed to get session: %s", err),
 			}
 		}
 

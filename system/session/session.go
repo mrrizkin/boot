@@ -1,6 +1,7 @@
 package session
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -46,9 +47,12 @@ func New(config *config.Config) (*Session, error) {
 
 	return &Session{
 		Store: session.New(session.Config{
-			Storage:    storage,
-			Expiration: 24 * time.Hour,
-			KeyLookup:  "cookie:finteligo_session_key",
+			Storage:        storage,
+			Expiration:     24 * time.Hour,
+			KeyLookup:      fmt.Sprintf("cookie:%s_session_key", config.Get("APP_NAME")),
+			CookieHTTPOnly: config.SESSION_HTTP_ONLY,
+			CookieSecure:   config.SESSION_SECURE,
+			CookieSameSite: config.SESSION_SAME_SITE,
 		}),
 		storage: storage,
 	}, nil

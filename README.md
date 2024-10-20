@@ -57,6 +57,8 @@ Boot is a sophisticated, full-stack web application boilerplate that leverages t
 ### Prerequisites
 
 - Go (version 1.22.2 or later)
+- Air
+- Swaggo
 - Node.js
 - PNPM (Package Manager)
 

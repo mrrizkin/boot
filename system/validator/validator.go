@@ -17,7 +17,6 @@ type (
 	}
 
 	GlobalErrorResponse struct {
-		Title  string `json:"title"`
 		Status string `json:"status"`
 		Detail string `json:"detail"`
 	}

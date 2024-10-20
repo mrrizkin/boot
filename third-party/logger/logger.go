@@ -5,10 +5,10 @@ import (
 )
 
 type Logger interface {
-	Info(msg string)
-	Warn(msg string)
-	Error(err error, msg string)
-	Fatal(err error, msg string)
+	Info(msg string, args ...interface{})
+	Warn(msg string, args ...interface{})
+	Error(msg string, args ...interface{})
+	Fatal(msg string, args ...interface{})
 	GetLogger() interface{}
 }
 

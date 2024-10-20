@@ -1,8 +1,7 @@
-package stypes
+package types
 
 import (
-	"github.com/gofiber/fiber/v2"
-
+	"github.com/mrrizkin/boot/app/models"
 	"github.com/mrrizkin/boot/system/config"
 	"github.com/mrrizkin/boot/system/database"
 	"github.com/mrrizkin/boot/system/session"
@@ -13,7 +12,6 @@ import (
 )
 
 type Response struct {
-	Title   string          `json:"title"`
 	Status  string          `json:"status"`
 	Message string          `json:"message"`
 	Debug   string          `json:"debug,omitempty"`
@@ -38,13 +36,6 @@ type PaginationMeta struct {
 	PageCount int `json:"page_count"`
 }
 
-type App struct {
-	*fiber.App
-
-	System  *System
-	Library *Library
-}
-
 type System struct {
 	Logger    logger.Logger
 	Database  *database.Database
@@ -52,8 +43,9 @@ type System struct {
 	Session   *session.Session
 	Validator *validator.Validator
 	View      view.View
+	Hashing   hashing.Hashing
+	Model     *models.Model
 }
 
 type Library struct {
-	Hashing hashing.Hashing
 }
