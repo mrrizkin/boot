@@ -1,8 +1,15 @@
 package cache
 
+import (
+	"github.com/mrrizkin/boot/app/providers/cache/provider"
+	"github.com/mrrizkin/boot/config"
+)
+
 type CacheProvider interface {
 	Get(key string) (interface{}, bool)
 	Set(key string, value interface{})
+	Delete(key string)
+	Close() error
 }
 
 type Cache struct {
@@ -10,10 +17,15 @@ type Cache struct {
 }
 
 func (*Cache) Construct() interface{} {
-	return func() *Cache {
-		return &Cache{
-			provider: createCacheProvider(),
+	return func(config *config.App) (*Cache, error) {
+		cache, err := provider.NewRessetto(config)
+		if err != nil {
+			return nil, err
 		}
+
+		return &Cache{
+			provider: cache,
+		}, nil
 	}
 }
 
@@ -29,15 +41,3 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 func (c *Cache) Set(key string, value interface{}) {
 	c.provider.Set(key, value)
 }
-
-type SimpleCache struct{}
-
-func createCacheProvider() CacheProvider {
-	return &SimpleCache{}
-}
-
-func (*SimpleCache) Get(key string) (interface{}, bool) {
-	return nil, false
-}
-
-func (*SimpleCache) Set(key string, value interface{}) {}

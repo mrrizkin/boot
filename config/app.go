@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 type App struct {
 	NAME    string `env:"APP_NAME,required"`
 	KEY     string `env:"APP_KEY"`
@@ -7,6 +9,7 @@ type App struct {
 	URL     string `env:"URL,required"`
 	PORT    int    `env:"PORT,required"`
 	PREFORK bool   `env:"PREFORK,default=false"`
+	DEBUG   bool   `env:"DEBUG,default=false"`
 
 	STORAGE_PATH string `env:"STORAGE_PATH,default=storage"`
 
@@ -38,6 +41,8 @@ type App struct {
 	VIEW_EXTENSION string `env:"VIEW_EXTENSION,default=.html"`
 	VIEW_CACHE     bool   `env:"VIEW_CACHE,default=true"`
 
+	CACHE_TTL int `env:"CACHE_TTL,default=300"`
+
 	SWAGGER_PATH string `env:"SWAGGER_PATH,default=/docs/swagger.json"`
 }
 
@@ -51,4 +56,8 @@ func (*App) Construct() interface{} {
 
 func (a *App) IsProduction() bool {
 	return a.ENV == "production" || a.ENV == "prod"
+}
+
+func (a *App) CacheTTLSecond() time.Duration {
+	return time.Duration(a.CACHE_TTL) * time.Second
 }
