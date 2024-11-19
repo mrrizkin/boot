@@ -25,6 +25,7 @@
         "vite-plugin-full-reload": "^1.2.0"
     },
     "dependencies": {
+        "alpinejs": "^3.14.3",
         "axios": "^1.7.7"
     }
 }

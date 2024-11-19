@@ -9,7 +9,6 @@ import (
 	"net/http"
 
 	"github.com/mrrizkin/boot/app/providers/cache"
-	"github.com/mrrizkin/boot/app/providers/logger"
 	"github.com/mrrizkin/boot/config"
 	"github.com/mrrizkin/boot/resources"
 	"github.com/nikolalohinski/gonja/v2/builtins"
@@ -32,7 +31,6 @@ type View struct {
 
 func (*View) Construct() interface{} {
 	return func(
-		log *logger.Logger,
 		cfg *config.App,
 		cache *cache.Cache,
 	) (*View, error) {
@@ -47,16 +45,10 @@ func (*View) Construct() interface{} {
 			Methods:           builtins.Methods,
 		}
 
-		// provider, err := newJinja2(fs, directory, extension, env)
-		// if err != nil {
-		// 	return nil, err
-		// }
-
 		return &View{
 			config: cfg,
-			// provider: provider,
-			cache: cache,
-			env:   env,
+			cache:  cache,
+			env:    env,
 
 			fs:        fs,
 			directory: directory,
