@@ -11,22 +11,20 @@
         "build:app": "go build ./cmd/main/main.go",
         "dev": "concurrently \"pnpm dev:assets\" \"bash -c 'sleep 5 && pnpm dev:app'\"",
         "build": "pnpm build:assets && pnpm build:app",
-        "generate:swagger": "swag init -g ./routes/api.go -ot json -o ./public/docs --pd --parseInternal"
+        "generate:swagger": "swag init -g ./app/providers/app/app.go -ot json -o ./public/docs --pd --parseInternal"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",
-        "concurrently": "^9.0.1",
-        "postcss": "^8.4.47",
+        "concurrently": "^9.1.0",
+        "postcss": "^8.4.49",
         "prettier": "^3.3.3",
         "prettier-plugin-django-alpine": "^1.3.0",
-        "tailwindcss": "^3.4.14",
-        "vite": "^5.4.9",
+        "tailwindcss": "^3.4.15",
+        "vite": "^5.4.11",
         "vite-plugin-backend": "^1.0.0",
         "vite-plugin-full-reload": "^1.2.0"
     },
     "dependencies": {
-        "alpinejs": "^3.14.3",
-        "axios": "^1.7.7",
-        "htmx.org": "2.0.2"
+        "axios": "^1.7.7"
     }
 }
