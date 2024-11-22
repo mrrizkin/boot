@@ -105,6 +105,7 @@ Boot comes with a modern frontend development stack:
 ```json
 {
     "dependencies": {
+        "alpinejs": "^3.14.3", // JavaScript framework
         "axios": "^1.7.7" // HTTP client
     },
     "devDependencies": {
