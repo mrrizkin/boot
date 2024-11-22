@@ -18,18 +18,24 @@ type UserController struct {
 
 	log *logger.Logger
 
-	userService services.UserService
-	userRepo    repositories.UserRepository
+	userService *services.UserService
+	userRepo    *repositories.UserRepository
 }
 
 func (*UserController) Construct() interface{} {
 	return func(
 		app *app.App,
 		log *logger.Logger,
+
+		userService *services.UserService,
+		userRepo *repositories.UserRepository,
 	) (*UserController, error) {
 		return &UserController{
 			App: app,
 			log: log,
+
+			userService: userService,
+			userRepo:    userRepo,
 		}, nil
 	}
 }
