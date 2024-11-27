@@ -17,7 +17,7 @@
         "autoprefixer": "^10.4.20",
         "concurrently": "^9.1.0",
         "postcss": "^8.4.49",
-        "prettier": "^3.3.3",
+        "prettier": "^3.4.1",
         "prettier-plugin-django-alpine": "^1.3.0",
         "tailwindcss": "^3.4.15",
         "vite": "^5.4.11",
@@ -25,7 +25,7 @@
         "vite-plugin-full-reload": "^1.2.0"
     },
     "dependencies": {
-        "alpinejs": "^3.14.3",
-        "axios": "^1.7.7"
+        "alpinejs": "^3.14.4",
+        "axios": "^1.7.8"
     }
 }
